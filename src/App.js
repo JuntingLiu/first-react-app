@@ -16,9 +16,18 @@ class App extends Component {
     });
   }
   handleAdd() {
+    // this.setState 修改 state 的数据
     this.setState({
       list: [...this.state.list, this.state.inputValue],
       inputValue: ""
+    });
+  }
+
+  handleDelete(index) {
+    const list = [...this.state.list];
+    list.splice(index, 1);
+    this.setState({
+      list
     });
   }
 
@@ -38,7 +47,11 @@ class App extends Component {
           </div>
           <ul>
             {this.state.list.map((item, index) => {
-              return <li key={index}>{item}</li>;
+              return (
+                <li key={index} onClick={this.handleDelete.bind(this, index)}>
+                  {item}
+                </li>
+              );
             })}
           </ul>
         </div>
