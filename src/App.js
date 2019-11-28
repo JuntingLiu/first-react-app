@@ -24,6 +24,8 @@ class App extends Component {
   }
 
   handleDelete(index) {
+    // immutabel 原则，不允许直接修改 state 里的数据
+    // 不要直接去操作原数据，先拷贝一份数据
     const list = [...this.state.list];
     list.splice(index, 1);
     this.setState({
