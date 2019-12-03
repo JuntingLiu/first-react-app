@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import "./todoList.css";
+import TodoItem from "./TodoItem";
 
 class TodoList extends Component {
   constructor(props) {
@@ -57,14 +58,22 @@ class TodoList extends Component {
         <ul>
           {this.state.list.map((item, index) => {
             return (
-              <li
-                key={index}
-                onClick={this.handleDelete.bind(this, index)}
-                // 对于输入的 html 标签，不要转移成字符串标签，后面参数跟着不要转移的内容
-                dangerouslySetInnerHTML={{ __html: item }}
-              >
-                {/* {item} */}
-              </li>
+              // 只支持一层容器
+              <div>
+                <TodoItem
+                  content={item}
+                  index={index}
+                  deleteItem={this.handleDelete.bind(this)}
+                />
+                {/*
+                  <li
+                    key={index}
+                    onClick={this.handleDelete.bind(this, index)}
+                    // 对于输入的 html 标签，不要转移成字符串标签，后面参数跟着不要转移的内容
+                    dangerouslySetInnerHTML={{ __html: item }}
+                  ></li>
+                */}
+              </div>
             );
           })}
         </ul>
