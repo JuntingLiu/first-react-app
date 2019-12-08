@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from "react";
 import "./todoList.css";
 import TodoItem from "./TodoItem";
+import TestRender from "./TestRender";
 
 class TodoList extends Component {
   constructor(props) {
+    // 当组件的 props 和 state 发生了改变，自身的 render 函数就会被重新执行
     super(props);
     this.state = {
       inputValue: "",
@@ -56,6 +58,7 @@ class TodoList extends Component {
   }
 
   render() {
+    console.log("render");
     return (
       // Fragment 占位符组件；包裹后，无需再外面包一层容器，可以返回多个子容器，渲染的时候也不会有一层包裹
       <Fragment>
@@ -64,6 +67,7 @@ class TodoList extends Component {
           // 单行注释
         }
         <div>
+          <TestRender content={this.state.inputValue} />
           {/* 对于 label 属性 for 会于 js 里的 for 冲突 */}
           <label htmlFor="insertArea">输入任务名称：</label>
           <input
