@@ -20,7 +20,10 @@ class TodoList extends Component {
   changeInput(e) {
     // 新版支持函数，提升性能
     // 当传递一个函数时，变成了一个异步的 setState 时，使用 e.target.value 就有问题了，这里要提前先保存数据
-    const value = e.target.value;
+    // const value = e.target.value;
+
+    // 通过 ref 获取 DOM 节点后提取数据
+    const value = this.input.value;
     this.setState(() => ({
       inputValue: value
     }));
@@ -36,10 +39,21 @@ class TodoList extends Component {
     // });
 
     // setState 传递函数的时候，支持接收一个 prevState 参数(修改之前的数据，等价于 this.state)
-    this.setState(prevState => ({
-      list: [...prevState.list, prevState.inputValue],
-      inputValue: ""
-    }));
+    this.setState(
+      prevState => ({
+        list: [...prevState.list, prevState.inputValue],
+        inputValue: ""
+      }),
+      () => {
+        // 实在要通过 DOM 操作，需要放在 setState 操作数据之后，通过参数形式进行
+        console.log(
+          "列表长度(异步后)：",
+          this.ul.querySelectorAll("div").length
+        );
+      }
+    );
+    // 不推荐理由之一：因为 setState 是异步的，所以你获取列表长度老是获取上一次的长度
+    console.log("列表长度：", this.ul.querySelectorAll("div").length);
   }
 
   handleDelete(index) {
@@ -77,10 +91,14 @@ class TodoList extends Component {
             type="text"
             value={this.state.inputValue}
             onChange={this.changeInput}
+            // 不推荐使用，通过 ref 获取当前 DOM 节点
+            ref={input => {
+              this.input = input;
+            }}
           />
           <button onClick={this.handleAdd}>提交</button>
         </div>
-        <ul>{this.getTodoItem()}</ul>
+        <ul ref={ul => (this.ul = ul)}>{this.getTodoItem()}</ul>
       </Fragment>
     );
   }
