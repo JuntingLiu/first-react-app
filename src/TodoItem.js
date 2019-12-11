@@ -12,6 +12,26 @@ class TodoItem extends Component {
     deleteItem(index);
   }
 
+  // props 更新才会被执行，（组件需要接收 props）才会有触发
+  // 一个组件要从父组件接收 props
+  // 只要父组件的 render 函数被 “重新” 执行了，子组件的这个生命周期函数就会被执行
+  // * 如果这个组件第一次存在于父组件中，不会被执行
+  // * 如果这个组件之前已经存在于父组件中，才会被执行
+  componentWillReceiveProps() {
+    console.log(
+      "React lifeCycles: componentWillReceiveProps",
+      "TodoItem 组件更新完成之后自动执行"
+    );
+  }
+
+  // 当这个组件即将从页面移除（销毁）的时候，会被执行
+  componentWillUnmount() {
+    console.log(
+      "React lifeCycles: componentWillUpdate",
+      "TodoItem 组件被移除之前自动执行"
+    );
+  }
+
   render() {
     const { content, prefix } = this.props;
     return (

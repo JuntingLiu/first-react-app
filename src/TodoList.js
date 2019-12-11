@@ -71,6 +71,50 @@ class TodoList extends Component {
     });
   }
 
+  // 在组件即将被挂载的到页面的时刻自动执行 (新版本已被重新命名，在组件挂载的时候才会执行)
+  componentWillMount() {
+    console.log(
+      "React lifeCycles：componentWillMount",
+      "组件即将被挂载前自动执行"
+    );
+  }
+
+  // 在组件第一次被挂载的到页面时刻自动执行 （在组件挂载的时候才会执行）
+  componentDidMount() {
+    console.log(
+      "React lifeCycles: componentDidMount",
+      "组件被挂载的到页面时刻自动执行"
+    );
+  }
+
+  // 组件更新之前自动执行, 要求返回 Boolean 值，判别是否更新组件
+  shouldComponentUpdate() {
+    console.log(
+      "React lifeCycles: shouldComponentUpdate",
+      "组件更新之前自动执行"
+    );
+    return true;
+  }
+
+  // 组件被更新之前，它会自动执行，但是他在 shouldComponentUpdate 之后执行
+  // 如果 shouldComponentUpdate 返回 true, componentWillUpdate 才会执行
+  // 返回 false, componentWillUpdate 就不执行了
+  // （新版本已更名）
+  componentWillUpdate() {
+    console.log(
+      "React lifeCycles: componentWillUpdate",
+      "组件更新之前自动执行"
+    );
+  }
+
+  // 组件更新完成之后自动执行
+  componentDidUpdate() {
+    console.log(
+      "React lifeCycles: componentDidUpdate",
+      "组件更新完成之后自动执行"
+    );
+  }
+
   render() {
     console.log("render");
     return (
