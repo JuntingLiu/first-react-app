@@ -12,6 +12,15 @@ class TodoItem extends Component {
     deleteItem(index);
   }
 
+  // 提升组件性能，子组件接收的数据没有变更就不渲染（执行 render）
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.content !== this.props.content) {
+      return true;
+    } else {
+      return false
+    }
+  }
+
   // props 更新才会被执行，（组件需要接收 props）才会有触发
   // 一个组件要从父组件接收 props
   // 只要父组件的 render 函数被 “重新” 执行了，子组件的这个生命周期函数就会被执行
@@ -32,7 +41,9 @@ class TodoItem extends Component {
     );
   }
 
+  // 父组件 render 函数被执行了，子组件的 render 函数也会被执行（性能会有所影响）
   render() {
+    console.log('TodoItem render');
     const { content, prefix } = this.props;
     return (
       <li onClick={this.handleClick}>

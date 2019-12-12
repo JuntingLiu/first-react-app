@@ -15,6 +15,8 @@ class TodoList extends Component {
     this.changeInput = this.changeInput.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+
+    // ajax 异步请求数据也可以放到 constructor 函数里，但是不推荐。
   }
 
   changeInput(e) {
@@ -23,7 +25,8 @@ class TodoList extends Component {
     // const value = e.target.value;
 
     // 通过 ref 获取 DOM 节点后提取数据
-    const value = this.input.value;
+    // const value = this.input.value;
+    const value = e.target.value;
     this.setState(() => ({
       inputValue: value
     }));
@@ -72,6 +75,7 @@ class TodoList extends Component {
   }
 
   // 在组件即将被挂载的到页面的时刻自动执行 (新版本已被重新命名，在组件挂载的时候才会执行)
+  // ajax 异步请求数据在这个生命周期函数里，但是在写 native 里会有所冲突 （不推荐）
   componentWillMount() {
     console.log(
       "React lifeCycles：componentWillMount",
@@ -80,6 +84,7 @@ class TodoList extends Component {
   }
 
   // 在组件第一次被挂载的到页面时刻自动执行 （在组件挂载的时候才会执行）
+  // ajax 异步请求数据在这个生命周期函数里 （极力推荐，约定）
   componentDidMount() {
     console.log(
       "React lifeCycles: componentDidMount",
@@ -115,8 +120,9 @@ class TodoList extends Component {
     );
   }
 
+  // render 生命周期函数没有内置实现，所以组件必须自己实现 render
   render() {
-    console.log("render");
+    console.log("TodoList render");
     return (
       // Fragment 占位符组件；包裹后，无需再外面包一层容器，可以返回多个子容器，渲染的时候也不会有一层包裹
       <Fragment>
@@ -136,13 +142,15 @@ class TodoList extends Component {
             value={this.state.inputValue}
             onChange={this.changeInput}
             // 不推荐使用，通过 ref 获取当前 DOM 节点
-            ref={input => {
-              this.input = input;
-            }}
+            // ref={input => {
+            //   this.input = input;
+            // }}
           />
           <button onClick={this.handleAdd}>提交</button>
         </div>
-        <ul ref={ul => (this.ul = ul)}>{this.getTodoItem()}</ul>
+        <ul ref={ul => (this.ul = ul)} >
+          {this.getTodoItem()}
+        </ul>
       </Fragment>
     );
   }
