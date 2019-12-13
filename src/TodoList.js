@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import "./todoList.css";
 import TodoItem from "./TodoItem";
 import TestRender from "./TestRender";
+import axios from 'axios';
 
 class TodoList extends Component {
   constructor(props) {
@@ -86,6 +87,21 @@ class TodoList extends Component {
   // 在组件第一次被挂载的到页面时刻自动执行 （在组件挂载的时候才会执行）
   // ajax 异步请求数据在这个生命周期函数里 （极力推荐，约定）
   componentDidMount() {
+    axios.get('/api/todolist').then(res => {
+      const { ret, data, msg} = res.data;
+
+      if (ret === 0) {
+        this.setState(() => {
+          return {
+            list: data
+          }
+        })
+      } else {
+        alert(msg);
+      }
+    }).catch(err => {
+      console.log("TCL: TodoList -> componentDidMount -> err", err)
+    })
     console.log(
       "React lifeCycles: componentDidMount",
       "组件被挂载的到页面时刻自动执行"
