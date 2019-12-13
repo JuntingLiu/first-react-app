@@ -10,12 +10,14 @@ class TodoList extends Component {
     super(props);
     this.state = {
       inputValue: "",
-      list: []
+      list: [],
+      show: true
     };
 
     this.changeInput = this.changeInput.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleClick = this.handleClick.bind(this);
 
     // ajax 异步请求数据也可以放到 constructor 函数里，但是不推荐。
   }
