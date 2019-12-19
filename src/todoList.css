@@ -45,3 +45,37 @@
     color: yellow;
   }
 }
+
+/* 入场动画第一帧 */
+/* *-appear 页面一打开就会出现的动画 */
+.fade-enter, .fade-appear {
+  opacity: 0;
+}
+
+/* 入场动画第二帧到动画执行完成一直存在的动画 */
+.fade-enter-active, .fade-appear-active {
+  opacity: 1;
+  color: orange;
+  transition: opacity 1s ease-in;
+}
+
+/* 入场动画完成 */
+.fade-enter-done {
+  opacity: 1;
+  color: red;
+}
+
+/* 出场动画第一帧 */
+.fade-exit{
+  opacity: 1;
+}
+/* 出场动画第一帧后到动画完成前的动画 */
+.fade-exit-active {
+  opacity: 0;
+  color: orange;
+  transition: opacity 1s ease-in;
+}
+/* 出场动画完成 */
+.fade-exit-done {
+  opacity: 0;
+}
