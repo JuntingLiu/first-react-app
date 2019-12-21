@@ -3,7 +3,8 @@ import 'antd/dist/antd.css';
 import {
   Input,
   Button,
-  List
+  List,
+  Icon
 } from 'antd';
 import store from './store';
 
@@ -14,6 +15,7 @@ class TodoList extends Component {
     this.state = store.getState();
     this.handleStoreChange = this.handleStoreChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleBtnClick = this.handleBtnClick.bind(this);
     // 当前组件订阅 store, store 有变更，就会执行 this.handleStoreChange 方法
     store.subscribe(this.handleStoreChange);
   }
@@ -29,16 +31,22 @@ class TodoList extends Component {
               placeholder="todo info"
               style={{ width: '300px', 'marginRight': '10px' }}
               />
-            <Button type="primary">提交</Button>
+            <Button type="primary" onClick={this.handleBtnClick}>提交</Button>
           </div>
 
           <List
             bordered
             dataSource={this.state.list}
-            renderItem={item => (
-              <List.Item>{item}</List.Item>
+            renderItem={(item, index) => (
+              <List.Item
+                actions={
+                  [<Icon onClick={this.handleItemDelete.bind(this, index)} type="close" style={{ color: '#f81d22' }}/>]
+                }
+              >
+                  {item}
+              </List.Item>
             )}
-            style={{ width: '300px', marginTop: '10px' }}
+            style={{marginTop: '10px' }}
           />
         </div>
       </div>
@@ -53,6 +61,21 @@ class TodoList extends Component {
 
     // 通知 store 变更
     store.dispatch(action)
+  }
+
+  handleBtnClick() {
+    const action = {
+      type: 'add_todo_item'
+    };
+    store.dispatch(action)
+  }
+
+  handleItemDelete(index) {
+    const action = {
+      type: 'delete_todo_item',
+      index
+    };
+    store.dispatch(action);
   }
 
   handleStoreChange() {
