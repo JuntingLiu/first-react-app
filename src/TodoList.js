@@ -5,28 +5,36 @@ import {
   Button,
   List
 } from 'antd';
-
-const data = [
-  'Racing car sprays burning fuel into crowd.',
-  'Japanese princess to wed commoner.',
-  'Australian walks 100km after outback crash.',
-  'Man charged over missing wedding girl.',
-  'Los Angeles battles huge wildfires.',
-];
+import store from './store';
 
 class TodoList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = store.getState();
+    this.handleStoreChange = this.handleStoreChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    // 当前组件订阅 store, store 有变更，就会执行 this.handleStoreChange 方法
+    store.subscribe(this.handleStoreChange);
+  }
+
   render () {
     return (
       <div style={{ margin: '10px', display: 'flex', justifyContent: 'center' }}>
         <div style={{ width: '400px' }}>
           <div>
-            <Input placeholder="todo info" style={{ width: '300px', 'marginRight': '10px' }}/>
+            <Input
+              value={ this.state.inputValue }
+              onChange={this.handleInputChange}
+              placeholder="todo info"
+              style={{ width: '300px', 'marginRight': '10px' }}
+              />
             <Button type="primary">提交</Button>
           </div>
 
           <List
             bordered
-            dataSource={data}
+            dataSource={this.state.list}
             renderItem={item => (
               <List.Item>{item}</List.Item>
             )}
@@ -35,6 +43,20 @@ class TodoList extends Component {
         </div>
       </div>
     )
+  }
+
+  handleInputChange(e) {
+    const action = {
+      type: 'change_input_value',
+      value: e.target.value
+    };
+
+    // 通知 store 变更
+    store.dispatch(action)
+  }
+
+  handleStoreChange() {
+    this.setState(store.getState());
   }
 }
 
