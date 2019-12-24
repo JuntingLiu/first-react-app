@@ -3,8 +3,9 @@
  * @Author: Junting
  * @Date: 2019-12-21 11:51:50
  * @Last Modified by: Junting
- * @Last Modified time: 2019-12-21 13:35:22
+ * @Last Modified time: 2019-12-24 21:24:15
  */
+import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM } from './store/actionTypes';
 
 const defaultState = {
   inputValue: '',
@@ -20,13 +21,13 @@ const defaultState = {
 // store 会自动传递两个参数: state、action
 // reducer 可以接收 state, 但不能修改 state 的值
 export default (state = defaultState, action) => {
-  if (action.type === 'change_input_value') {
+  if (action.type === CHANGE_INPUT_VALUE) {
     let newState = JSON.parse(JSON.stringify(state));
     newState.inputValue = action.value;
     return newState;
   }
 
-  if (action.type === 'add_todo_item') {
+  if (action.type === ADD_TODO_ITEM) {
     let newState = JSON.parse(JSON.stringify(state));
     newState.list.push(newState.inputValue);
     newState.inputValue = '';
@@ -34,7 +35,7 @@ export default (state = defaultState, action) => {
     return newState;
   }
 
-  if (action.type === 'delete_todo_item') {
+  if (action.type === DELETE_TODO_ITEM) {
     let newState = JSON.parse(JSON.stringify(state));
     newState.list.splice(action.index, 1);
 

@@ -1,0 +1,12 @@
+// 针对 action.type 抽离出来成常量或变量，利于排查问题
+// 页面里 action.type 等比一个字符串的话，字符串写错了的话很难排查出问题
+
+const CHANGE_INPUT_VALUE = 'change_input_value';
+const ADD_TODO_ITEM = 'add_todo_item';
+const DELETE_TODO_ITEM = 'delete_todo_item';
+
+export default  {
+  CHANGE_INPUT_VALUE,
+  ADD_TODO_ITEM,
+  DELETE_TODO_ITEM
+}
