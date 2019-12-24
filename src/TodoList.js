@@ -1,11 +1,14 @@
+/**
+ * 容器组件（聪明组件）
+ * 不负责页面渲染工作，只负责业务逻辑
+ * @Author: Junting
+ * @Date: 2019-12-24 22:48:57
+ * @Last Modified by: Junting
+ * @Last Modified time: 2019-12-24 22:49:43
+ */
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import {
-  Input,
-  Button,
-  List,
-  Icon
-} from 'antd';
+import TodoListUI from './TodoListUI'
 import store from './store';
 import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreator';
 
@@ -17,40 +20,20 @@ class TodoList extends Component {
     this.handleStoreChange = this.handleStoreChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleBtnClick = this.handleBtnClick.bind(this);
+    this.handleItemDelete = this.handleItemDelete.bind(this);
     // 当前组件订阅 store, store 有变更，就会执行 this.handleStoreChange 方法
     store.subscribe(this.handleStoreChange);
   }
 
   render () {
     return (
-      <div style={{ margin: '10px', display: 'flex', justifyContent: 'center' }}>
-        <div style={{ width: '400px' }}>
-          <div>
-            <Input
-              value={ this.state.inputValue }
-              onChange={this.handleInputChange}
-              placeholder="todo info"
-              style={{ width: '300px', 'marginRight': '10px' }}
-              />
-            <Button type="primary" onClick={this.handleBtnClick}>提交</Button>
-          </div>
-
-          <List
-            bordered
-            dataSource={this.state.list}
-            renderItem={(item, index) => (
-              <List.Item
-                actions={
-                  [<Icon onClick={this.handleItemDelete.bind(this, index)} type="close" style={{ color: '#f81d22' }}/>]
-                }
-              >
-                  {item}
-              </List.Item>
-            )}
-            style={{marginTop: '10px' }}
-          />
-        </div>
-      </div>
+      <TodoListUI
+        inputValue={ this.state.inputValue }
+        list={this.state.list}
+        handleInputChange={this.handleInputChange}
+        handleBtnClick={this.handleBtnClick}
+        handleItemDelete={this.handleItemDelete}
+      />
     )
   }
 
