@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import {
   Input,
@@ -7,8 +7,7 @@ import {
   Icon
 } from 'antd';
 import store from './store';
-import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM } from './store/actionTypes'
-console.log("TCL: CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM", CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM)
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreator';
 
 class TodoList extends Component {
   constructor(props) {
@@ -56,27 +55,18 @@ class TodoList extends Component {
   }
 
   handleInputChange(e) {
-    const action = {
-      type: CHANGE_INPUT_VALUE,
-      value: e.target.value
-    };
-
+    const action = getInputChangeAction(e.target.value);
     // 通知 store 变更
     store.dispatch(action)
   }
 
   handleBtnClick() {
-    const action = {
-      type: ADD_TODO_ITEM
-    };
+    const action = getAddItemAction();
     store.dispatch(action)
   }
 
   handleItemDelete(index) {
-    const action = {
-      type: DELETE_TODO_ITEM,
-      index
-    };
+    const action = getDeleteItemAction(index);
     store.dispatch(action);
   }
 
