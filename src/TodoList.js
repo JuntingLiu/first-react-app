@@ -8,6 +8,7 @@ import {
 } from 'antd';
 import store from './store';
 import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM } from './store/actionTypes'
+console.log("TCL: CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM", CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM)
 
 class TodoList extends Component {
   constructor(props) {

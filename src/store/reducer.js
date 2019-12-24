@@ -3,9 +3,9 @@
  * @Author: Junting
  * @Date: 2019-12-21 11:51:50
  * @Last Modified by: Junting
- * @Last Modified time: 2019-12-24 21:24:15
+ * @Last Modified time: 2019-12-24 21:32:18
  */
-import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM } from './store/actionTypes';
+import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM } from './actionTypes';
 
 const defaultState = {
   inputValue: '',
