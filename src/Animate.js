@@ -1,6 +1,6 @@
 import React, { Component, Fragment} from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-// import './todoList.css';
+import './todoList.css';
 
 class Animate extends Component {
   constructor(props) {

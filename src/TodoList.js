@@ -17,7 +17,6 @@ class TodoList extends Component {
     this.changeInput = this.changeInput.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleClick = this.handleClick.bind(this);
 
     // ajax 异步请求数据也可以放到 constructor 函数里，但是不推荐。
   }
@@ -26,17 +25,20 @@ class TodoList extends Component {
     // 新版支持函数，提升性能
     // 当传递一个函数时，变成了一个异步的 setState 时，使用 e.target.value 就有问题了，这里要提前先保存数据
     // const value = e.target.value;
+    // 修改 state 数据，都需要通过 setState 方法来进行
+    // this.setState({
+    //   inputValue: e.target.value
+    // });
 
     // 通过 ref 获取 DOM 节点后提取数据
     // const value = this.input.value;
+    // console.log(this.input)
     const value = e.target.value;
     this.setState(() => ({
       inputValue: value
     }));
-    // this.setState({
-    //   inputValue: e.target.value
-    // });
   }
+
   handleAdd() {
     // this.setState 修改 state 的数据
     // this.setState({
@@ -159,7 +161,7 @@ class TodoList extends Component {
             type="text"
             value={this.state.inputValue}
             onChange={this.changeInput}
-            // 不推荐使用，通过 ref 获取当前 DOM 节点
+            // 通过 ref 获取当前 DOM 节点（不推荐使用）
             // ref={input => {
             //   this.input = input;
             // }}
