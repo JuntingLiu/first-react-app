@@ -4,7 +4,7 @@
  * @Author: Junting
  * @Date: 2019-12-24 22:48:57
  * @Last Modified by: Junting
- * @Last Modified time: 2019-12-24 22:49:43
+ * @Last Modified time: 2020-03-03 15:12:25
  */
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
@@ -49,6 +49,7 @@ class TodoList extends Component {
   }
 
   handleItemDelete(index) {
+    console.log("TCL: TodoList -> handleItemDelete -> index", index)
     const action = getDeleteItemAction(index);
     store.dispatch(action);
   }

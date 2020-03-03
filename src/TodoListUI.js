@@ -4,7 +4,7 @@
  * @Author: Junting
  * @Date: 2019-12-24 22:48:16
  * @Last Modified by: Junting
- * @Last Modified time: 2019-12-24 22:48:36
+ * @Last Modified time: 2020-03-03 15:25:09
  */
 
 import React, { Component } from 'react';
@@ -35,11 +35,12 @@ class TodoListUI extends Component {
             dataSource={this.props.list}
             renderItem={(item, index) => (
               <List.Item
+                data-index={index}
                 actions={
                   [<Icon onClick={() => { this.props.handleItemDelete(index) }} type="close" style={{ color: '#f81d22' }}/>]
                 }
               >
-                  {item}
+                {item}
               </List.Item>
             )}
             style={{marginTop: '10px' }}

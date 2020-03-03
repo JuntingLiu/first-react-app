@@ -2,17 +2,17 @@
  * redux 的核心概念
  * 1. store 是唯一的
  * 2. 只有 store 能够改变自己的内容（state）
- * 3. Reducer 必须是纯函数（纯函数指的是，输入固定的值，就一定会有固定的输出，而切不会有任何副作用（对其他结果参数影响））
+ * 3. Reducer 必须是纯函数（纯函数指的是，输入固定的值，就一定会有固定的输出，而切不会有任何副作用（对其他结果产生影响））
  *
  * redux 核心的 API
  * * creatStore 创建 store
- * * store.getState() 获取所以定义的 state
+ * * store.getState() 获取所有定义的 state
  * * store.dispatch() 派发 action 操作，会传递给 store，store 接收到了就会执行 reducer 函数
  * * store.subscribe() 订阅 Store 的改变，只要改变，接收的函数就会执行
  * @Author: Junting
  * @Date: 2019-12-24 21:59:41
  * @Last Modified by: Junting
- * @Last Modified time: 2019-12-24 22:10:30
+ * @Last Modified time: 2020-03-03 14:45:42
  */
 
 import { createStore } from 'redux';
