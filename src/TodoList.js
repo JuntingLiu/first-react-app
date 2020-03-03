@@ -4,13 +4,19 @@
  * @Author: Junting
  * @Date: 2019-12-24 22:48:57
  * @Last Modified by: Junting
- * @Last Modified time: 2020-03-03 15:42:14
+ * @Last Modified time: 2020-03-03 16:17:51
  */
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import TodoListUI from './TodoListUI'
 import store from './store';
-import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreator';
+import {
+  getInputChangeAction,
+  getAddItemAction,
+  getDeleteItemAction,
+  initListAction
+} from './store/actionCreator';
+import Axios from 'axios';
 
 class TodoList extends Component {
   constructor(props) {
@@ -23,6 +29,19 @@ class TodoList extends Component {
     this.handleItemDelete = this.handleItemDelete.bind(this);
     // 当前组件订阅 store, store 有变更，就会执行 this.handleStoreChange 方法
     store.subscribe(this.handleStoreChange);
+  }
+
+  componentDidMount() {
+    Axios.get('/api/list').then((res) => {
+      const { status, msg, data } = res.data;
+      console.log("TCL: TodoList -> componentDidMount -> msg", msg)
+      if(status === 200) {
+        const action = initListAction(data);
+        store.dispatch(action);
+      }
+    }).catch(err => {
+      console.log("TCL: TodoList -> componentDidMount -> err", err);
+    })
   }
 
   render () {

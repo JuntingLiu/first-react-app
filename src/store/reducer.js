@@ -3,9 +3,14 @@
  * @Author: Junting
  * @Date: 2019-12-21 11:51:50
  * @Last Modified by: Junting
- * @Last Modified time: 2019-12-24 21:32:18
+ * @Last Modified time: 2020-03-03 16:22:18
  */
-import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM } from './actionTypes';
+import {
+  CHANGE_INPUT_VALUE,
+  ADD_TODO_ITEM,
+  DELETE_TODO_ITEM,
+  INIT_LIST_ACTION
+} from './actionTypes';
 
 const defaultState = {
   inputValue: '',
@@ -41,5 +46,14 @@ export default (state = defaultState, action) => {
 
     return newState;
   }
+
+  if (action.type === INIT_LIST_ACTION) {
+    let newState = Object.assign({}, state); // 推荐
+    newState.list = action.data;
+
+    return newState;
+  }
+
+
   return state;
 }
