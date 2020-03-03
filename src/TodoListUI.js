@@ -4,10 +4,10 @@
  * @Author: Junting
  * @Date: 2019-12-24 22:48:16
  * @Last Modified by: Junting
- * @Last Modified time: 2020-03-03 15:25:09
+ * @Last Modified time: 2020-03-03 15:42:13
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Input,
   Button,
@@ -15,40 +15,74 @@ import {
   Icon
 } from 'antd';
 
-class TodoListUI extends Component {
-  render () {
-    return (
-      <div style={{ margin: '10px', display: 'flex', justifyContent: 'center' }}>
-        <div style={{ width: '400px' }}>
-          <div>
-            <Input
-              value={ this.props.inputValue }
-              onChange={this.props.handleInputChange}
-              placeholder="todo info"
-              style={{ width: '300px', 'marginRight': '10px' }}
-              />
-            <Button type="primary" onClick={this.props.handleBtnClick}>提交</Button>
-          </div>
-
-          <List
-            bordered
-            dataSource={this.props.list}
-            renderItem={(item, index) => (
-              <List.Item
-                data-index={index}
-                actions={
-                  [<Icon onClick={() => { this.props.handleItemDelete(index) }} type="close" style={{ color: '#f81d22' }}/>]
-                }
-              >
-                {item}
-              </List.Item>
-            )}
-            style={{marginTop: '10px' }}
-          />
+const TodoListUI = (props) => {
+  return (
+    <div style={{ margin: '10px', display: 'flex', justifyContent: 'center' }}>
+      <div style={{ width: '400px' }}>
+        <div>
+          <Input
+            value={ props.inputValue }
+            onChange={ props.handleInputChange }
+            placeholder="todo info"
+            style={{ width: '300px', 'marginRight': '10px' }}
+            />
+          <Button type="primary" onClick={props.handleBtnClick}>提交</Button>
         </div>
+
+        <List
+          bordered
+          dataSource={ props.list }
+          renderItem={(item, index) => (
+            <List.Item
+              data-index={index}
+              actions={
+                [<Icon onClick={() => { props.handleItemDelete(index) }} type="close" style={{ color: '#f81d22' }}/>]
+              }
+            >
+              {item}
+            </List.Item>
+          )}
+          style={{marginTop: '10px' }}
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }
+
+// class TodoListUI extends Component {
+//   render () {
+//     return (
+//       <div style={{ margin: '10px', display: 'flex', justifyContent: 'center' }}>
+//         <div style={{ width: '400px' }}>
+//           <div>
+//             <Input
+//               value={ this.props.inputValue }
+//               onChange={this.props.handleInputChange}
+//               placeholder="todo info"
+//               style={{ width: '300px', 'marginRight': '10px' }}
+//               />
+//             <Button type="primary" onClick={this.props.handleBtnClick}>提交</Button>
+//           </div>
+
+//           <List
+//             bordered
+//             dataSource={this.props.list}
+//             renderItem={(item, index) => (
+//               <List.Item
+//                 data-index={index}
+//                 actions={
+//                   [<Icon onClick={() => { this.props.handleItemDelete(index) }} type="close" style={{ color: '#f81d22' }}/>]
+//                 }
+//               >
+//                 {item}
+//               </List.Item>
+//             )}
+//             style={{marginTop: '10px' }}
+//           />
+//         </div>
+//       </div>
+//     );
+//   }
+// }
 
 export default TodoListUI;
