@@ -4,7 +4,7 @@
  * @Author: Junting
  * @Date: 2019-12-24 22:48:57
  * @Last Modified by: Junting
- * @Last Modified time: 2020-03-05 11:10:34
+ * @Last Modified time: 2020-03-05 14:20:01
  */
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
@@ -14,9 +14,8 @@ import {
   getInputChangeAction,
   getAddItemAction,
   getDeleteItemAction,
-  initListAction
+  getTodoList
 } from './store/actionCreator';
-import Axios from 'axios';
 
 class TodoList extends Component {
   constructor(props) {
@@ -32,16 +31,9 @@ class TodoList extends Component {
   }
 
   componentDidMount() {
-    Axios.get('/api/list').then((res) => {
-      const { status, msg, data } = res.data;
-      console.log("TCL: TodoList -> componentDidMount -> msg", msg)
-      if(status === 200) {
-        const action = initListAction(data);
-        store.dispatch(action);
-      }
-    }).catch(err => {
-      console.log("TCL: TodoList -> componentDidMount -> err", err);
-    })
+    const action = getTodoList(); // 返回一个函数
+    // 会自动调用 action 这个函数
+    store.dispatch(action);
   }
 
   render () {
