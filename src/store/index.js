@@ -12,16 +12,32 @@
  * @Author: Junting
  * @Date: 2019-12-24 21:59:41
  * @Last Modified by: Junting
- * @Last Modified time: 2020-03-03 14:45:42
+ * @Last Modified time: 2020-03-05 10:55:11
  */
 
-import { createStore } from 'redux';
-import reducer from './reducer'
+import { createStore, applyMiddleware, compose } from 'redux';
+import reducer from './reducer';
+import thunk from 'redux-thunk';
 
+// redux-devtools 中间件和别的中间间混合使用的方式：
+const composeEnhancers =
+  typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+    }) : compose;
+
+const enhancer = composeEnhancers(
+  applyMiddleware(thunk) // 多个中间件
+);
+
+// applyMiddleware 向外暴露的公共 API， 使 redux 可以引用外部的中间件
 const store = new createStore(
-  reducer,
-  // 开启 redux 调试工具
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  reducer, // 使用 reducer 构建的初始数据
+  enhancer
+  // 开启 redux 调试工具 (使用中间件的形式，下面就不能这样写了👇)
+  // redux-devtools 也是 redux 的中间件
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 export default store;
