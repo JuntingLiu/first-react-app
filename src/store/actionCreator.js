@@ -3,10 +3,16 @@
  * @Author: Junting
  * @Date: 2019-12-24 21:46:39
  * @Last Modified by: Junting
- * @Last Modified time: 2020-03-03 16:16:49
+ * @Last Modified time: 2020-03-05 15:55:28
  */
 
-import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM, INIT_LIST_ACTION } from './actionTypes'
+import {
+  CHANGE_INPUT_VALUE,
+  ADD_TODO_ITEM,
+  DELETE_TODO_ITEM,
+  INIT_LIST_ACTION,
+  GET_INIT_LIST
+} from './actionTypes'
 
 export const getInputChangeAction = (value) => ({
   type: CHANGE_INPUT_VALUE,
@@ -26,3 +32,7 @@ export const initListAction = (data) => ({
   type: INIT_LIST_ACTION,
   data
 });
+
+export const getInitList = () => ({
+  type: GET_INIT_LIST
+})

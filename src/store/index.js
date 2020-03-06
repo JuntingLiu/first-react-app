@@ -12,16 +12,34 @@
  * @Author: Junting
  * @Date: 2019-12-24 21:59:41
  * @Last Modified by: Junting
- * @Last Modified time: 2020-03-03 14:45:42
+ * @Last Modified time: 2020-03-05 15:38:48
  */
 
-import { createStore } from 'redux';
-import reducer from './reducer'
+import { createStore, applyMiddleware ,compose } from 'redux';
+import reducer from './reducer';
+import createSagaMiddleware from 'redux-saga';
+import todoListSaga from './sagas';
+
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware();
+
+const composeEnhancers =
+  typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+    }) : compose;
+
+const enhancer = composeEnhancers(
+  applyMiddleware(sagaMiddleware)
+);
 
 const store = new createStore(
   reducer,
-  // 开启 redux 调试工具
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  enhancer
 );
+
+// then run the saga
+sagaMiddleware.run(todoListSaga);
 
 export default store;

@@ -4,7 +4,7 @@
  * @Author: Junting
  * @Date: 2019-12-24 22:48:57
  * @Last Modified by: Junting
- * @Last Modified time: 2020-03-03 16:17:51
+ * @Last Modified time: 2020-03-05 16:29:01
  */
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
@@ -14,9 +14,8 @@ import {
   getInputChangeAction,
   getAddItemAction,
   getDeleteItemAction,
-  initListAction
+  getInitList
 } from './store/actionCreator';
-import Axios from 'axios';
 
 class TodoList extends Component {
   constructor(props) {
@@ -32,16 +31,8 @@ class TodoList extends Component {
   }
 
   componentDidMount() {
-    Axios.get('/api/list').then((res) => {
-      const { status, msg, data } = res.data;
-      console.log("TCL: TodoList -> componentDidMount -> msg", msg)
-      if(status === 200) {
-        const action = initListAction(data);
-        store.dispatch(action);
-      }
-    }).catch(err => {
-      console.log("TCL: TodoList -> componentDidMount -> err", err);
-    })
+    const action = getInitList();
+    store.dispatch(action); // 不仅 reducer 可以接收到 action，sagas 也能接收到
   }
 
   render () {
