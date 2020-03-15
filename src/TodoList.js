@@ -2,31 +2,32 @@ import React from 'react';
 // 组件和 store 做连接
 import { connect } from 'react-redux';
 
-class TodoList extends React.Component {
-  render() {
-    const {
-      inputValue,
-      list,
-      handleInputChange,
-      handleAdd,
-      handleDelete
-    } = this.props;
-    return (
+// 无状态组件
+const TodoList = (props) => {
+  const {
+    inputValue,
+    list,
+    handleInputChange,
+    handleAdd,
+    handleDelete
+  } = props;
+  return (
+    <div>
       <div>
-        <div>
-          <input type="text" value={ inputValue } onChange={ handleInputChange }/>
-          <button onClick={handleAdd}>提交</button>
-        </div>
-        <ul>
-          { list.map((value, index) => {
-            return (
-            <li onClick={() => handleDelete(index) } key={`${index}_${value}`}>{value}</li>
-            )
-          }) }
-        </ul>
+        <input type="text" value={ inputValue } onChange={ handleInputChange }/>
+        <button onClick={handleAdd}>提交</button>
       </div>
-    );
-  }
+      <ul>
+        { list.map((value, index) => {
+          return (
+          <li onClick={() => handleDelete(index) } key={`${index}_${value}`}>
+            {value}
+          </li>
+          )
+        }) }
+      </ul>
+    </div>
+  );
 }
 
 // 让组件的 props（state） 和 store 里的 state 关联起来
