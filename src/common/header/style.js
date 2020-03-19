@@ -23,8 +23,91 @@ export const Logo = styled.a.attrs({
 `;
 
 export const Nav = styled.div`
+  box-sizing: border-box;
   width: 960px;
   height: 100%;
+  padding-right: 70px;
   margin: 0 auto;
-  background: green;
+`;
+
+export const NavItem = styled.div`
+  line-height: 26px;
+  padding: 15px;
+  margin-right: 10px;
+  font-size: 17px;
+  color: #333;
+  &.left {
+    float: left;
+  }
+
+  &.right {
+    float: right;
+    color: #969696;
+  }
+
+  &.active {
+    color: #ea6f5a;
+  }
+`;
+
+export const SearchWrapper = styled.div`
+  float: left;
+  position: relative;
+
+  .iconfont {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    width: 30px;
+    line-height: 30px;
+    border-radius: 15px;
+    // background: red;
+    text-align: center;
+    color: #969696;
+  }
+`;
+
+export const NavSearch = styled.input.attrs({
+  placeholder: '搜索'
+})`
+  box-sizing: border-box;
+  width: 160px;
+  height: 38px;
+  margin-top: 9px;
+  padding: 0 20px;
+  border: none;
+  outline: none;
+  border-radius: 19px;
+  background: #eee;
+  font-size: 14px;
+
+  &::placeholder {
+    color: #999;
+  }
+`;
+
+export const Addition = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 56px;
+`;
+
+export const Button = styled.div`
+  float: right;
+  margin-top: 9px;
+  margin-right: 20px;
+  padding: 0 20px;
+  line-height: 38px;
+  border-radius: 19px;
+  border: 1px solid #ec6149;
+
+  &.registered {
+    color: #ec6149;
+  }
+
+  &.writting {
+    color: #fff;
+    background: #ec6149;
+  }
 `;
