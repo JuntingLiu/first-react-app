@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import {
   HeaderWrapper,
@@ -74,4 +75,13 @@ class Header extends React.Component {
   }
 }
 
-export  default  Header;
+const mapStateToProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+
+export  default  connect(mapStateToProps, mapDispatchToProps)(Header);
