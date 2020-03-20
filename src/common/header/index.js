@@ -13,16 +13,6 @@ import {
 } from './style';
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      focused: false
-    };
-
-    this.handleInputFocus = this.handleInputFocus.bind(this);
-    this.handleInputBlur = this.handleInputBlur.bind(this);
-  }
 
   handleInputFocus() {
     this.setState({
@@ -50,17 +40,17 @@ class Header extends React.Component {
             </NavItem>
             <SearchWrapper>
               <CSSTransition
-                in={this.state.focused}
+                in={this.props.focused}
                 timeout={200}
                 classNames="slide"
               >
                 <NavSearch
-                  className={ this.state.focused ? 'focused' : '' }
-                  onFocus={this.handleInputFocus}
-                  onBlur={this.handleInputBlur}
+                  className={ this.props.focused ? 'focused' : '' }
+                  onFocus={this.props.handleInputFocus}
+                  onBlur={this.props.handleInputBlur}
                 ></NavSearch>
               </CSSTransition>
-              <i className={ this.state.focused ? 'iconfont icon-Magnifier focused' : 'iconfont icon-Magnifier' }></i>
+              <i className={ this.props.focused ? 'iconfont icon-Magnifier focused' : 'iconfont icon-Magnifier' }></i>
             </SearchWrapper>
           </Nav>
           <Addition>
@@ -76,11 +66,24 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    focused: state.focused
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    handleInputFocus () {
+      const action = {
+        type: 'search_focus'
+      };
+      dispatch(action);
+    },
+    handleInputBlur () {
+      const action = { type: 'search_blur' };
+      dispatch(action);
+    }
+  };
 };
 
 
