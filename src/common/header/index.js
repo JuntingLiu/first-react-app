@@ -52,9 +52,9 @@ const Header = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  const { header } = state;
   return {
-    focused: header.get('focused')
+    //  等价于 state.get('header').get('focused')
+    focused: state.getIn(['header', 'focused'])
   };
 };
 
