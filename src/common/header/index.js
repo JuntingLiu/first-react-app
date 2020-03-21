@@ -9,9 +9,35 @@ import {
   SearchWrapper,
   NavSearch,
   Addition,
-  Button
+  Button,
+  SearchTrending,
+  SearchTrendingTitle,
+  SearchTrendingSwitch,
+  SearchTrendingList,
+  SearchTrendingItem
 } from './style';
 import { actionCreators } from './store';
+
+const getSearchTrending = (show) => {
+  if (show) {
+    return (
+      <SearchTrending>
+        <SearchTrendingTitle>
+          热门搜索
+          <SearchTrendingSwitch>换一换</SearchTrendingSwitch>
+        </SearchTrendingTitle>
+        <SearchTrendingList>
+          <SearchTrendingItem>JavaScript</SearchTrendingItem>
+          <SearchTrendingItem>React</SearchTrendingItem>
+          <SearchTrendingItem>Vue</SearchTrendingItem>
+          <SearchTrendingItem>TypeScript</SearchTrendingItem>
+        </SearchTrendingList>
+      </SearchTrending>
+    );
+  } else {
+    return null;
+  }
+}
 
 const Header = (props) => {
   return (
@@ -38,6 +64,7 @@ const Header = (props) => {
               ></NavSearch>
             </CSSTransition>
             <i className={ props.focused ? 'iconfont icon-Magnifier focused' : 'iconfont icon-Magnifier' }></i>
+            { getSearchTrending(props.focused) }
           </SearchWrapper>
         </Nav>
         <Addition>

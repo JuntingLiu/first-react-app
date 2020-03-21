@@ -67,8 +67,6 @@ export const SearchWrapper = styled.div`
     width: 160px;
   }
 
-
-
   .iconfont {
     position: absolute;
     right: 4px;
@@ -109,6 +107,58 @@ export const NavSearch = styled.input.attrs({
   &.focused {
     width: 240px;
   }
+`;
+
+export const SearchTrending = styled.div`
+  position: absolute;
+  left: 0;
+  top: 56px;
+  width: 240px;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 27px;
+    top: -5px;
+    width: 0px;
+    height: 0px;
+    background: #fff;
+    transform: rotate(45deg);
+    border: 12px solid transparent;
+    border-bottom-color: #fff;
+    z-index: -1px;
+  }
+`;
+
+export const SearchTrendingTitle = styled.div`
+  line-height: 20px;
+  font-size: 14px;
+  color: #969696;
+  margin-bottom: 10px;
+`;
+
+export const SearchTrendingSwitch = styled.span`
+  float: right;
+  font-size: 13px;
+`;
+
+export const SearchTrendingList = styled.div`
+  overflow: hidden;
+`;
+
+export const SearchTrendingItem = styled.a`
+  display: inline-block;
+  line-height: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 0 5px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 12px;
+  color: #787878;
 `;
 
 export const Addition = styled.div`
