@@ -3,7 +3,8 @@ import { fromJS } from 'immutable'
 
 // 生成一个不可变的 immutable 对象
 const initialState = fromJS({
-  focused: false
+  focused: false,
+  search_list: [] // 生成的已经是一个 immutable 的不可变对象了
 });
 
 export default (state = initialState, action) => {
@@ -13,6 +14,8 @@ export default (state = initialState, action) => {
       return state.set('focused', true);
     case actionTypes.SEARCH_BLUR:
       return state.set('focused', false);
+    case actionTypes.CHANGE_SEARCH_LIST:
+      return state.set('search_list', action.data);
     default:
       return state
   }
