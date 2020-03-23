@@ -4,7 +4,10 @@ import { fromJS } from 'immutable'
 // 生成一个不可变的 immutable 对象
 const initialState = fromJS({
   focused: false,
-  search_list: [] // 生成的已经是一个 immutable 的不可变对象了
+  mouseIn: false,
+  search_list: [], // 生成的已经是一个 immutable 的不可变对象了
+  page: 1, // 当前页
+  totalPage: 1 // 总页数
 });
 
 export default (state = initialState, action) => {
@@ -15,7 +18,13 @@ export default (state = initialState, action) => {
     case actionTypes.SEARCH_BLUR:
       return state.set('focused', false);
     case actionTypes.CHANGE_SEARCH_LIST:
-      return state.set('search_list', action.data);
+      return state.set('search_list', action.data).set('totalPage', action.totalPage);
+    case actionTypes.MOUSE_ENTER:
+      return state.set('mouseIn', true);
+    case actionTypes.MOUSE_LEAVE:
+      return state.set('mouseIn', false);
+    case actionTypes.CHANGE_PAGE:
+      return state.set('page', action.page);
     default:
       return state
   }

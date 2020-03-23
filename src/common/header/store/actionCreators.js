@@ -15,7 +15,8 @@ export const searchBlur = () => ({
 // 所以这里我们也要转变成 immutable 对象
 const changeSearchList = (data) => ({
   type: actionTypes.CHANGE_SEARCH_LIST,
-  data: fromJS(data)
+  data: fromJS(data),
+  totalPage: Math.ceil(data.length / 10)
 });
 
 export const searchList = () => {
@@ -30,3 +31,16 @@ export const searchList = () => {
     })
   };
 };
+
+export const mouseEnter = () => ({
+  type: actionTypes.MOUSE_ENTER
+});
+
+export const mouseLeave = () => ({
+  type: actionTypes.MOUSE_LEAVE
+});
+
+export const changePage = (page) => ({
+  type: actionTypes.CHANGE_PAGE,
+  page
+});

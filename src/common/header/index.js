@@ -21,21 +21,31 @@ import { actionCreators } from './store';
 class Header extends React.Component {
 
   getSearchTrending () {
-    if (this.props.focused) {
+    const { focused, mouseIn, search_list, page, totalPage, handleMouseEnter, handleMouseLeave, handleChangePage } = this.props;
+    const newList = search_list.toJS(); // immutable 对象转换为 JS 对象
+    const pageList = [];
+
+    // 异步数据请求到后在执行
+    if (newList.length) {
+      for (let i = (page - 1) * 10; i < (page * 10); i++) {
+        newList[i] && pageList.push(
+          <SearchTrendingItem key={newList[i]}>{newList[i]}</SearchTrendingItem>
+        );
+      }
+    }
+
+    if (focused || mouseIn) {
       return (
-        <SearchTrending>
+        <SearchTrending
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          >
           <SearchTrendingTitle>
             热门搜索
-            <SearchTrendingSwitch>换一换</SearchTrendingSwitch>
+            <SearchTrendingSwitch onClick={() => handleChangePage(page, totalPage)}>换一换</SearchTrendingSwitch>
           </SearchTrendingTitle>
           <SearchTrendingList>
-            {
-              this.props.search_list.map(item => {
-                return (
-                <SearchTrendingItem key={item}>{item}</SearchTrendingItem>
-                )
-              })
-            }
+            { pageList }
           </SearchTrendingList>
         </SearchTrending>
       );
@@ -45,6 +55,7 @@ class Header extends React.Component {
   }
 
   render() {
+    const { focused, handleInputFocus, handleInputBlur } = this.props;
     return (
       <div>
         <HeaderWrapper>
@@ -58,17 +69,17 @@ class Header extends React.Component {
             </NavItem>
             <SearchWrapper>
               <CSSTransition
-                in={this.props.focused}
+                in={focused}
                 timeout={200}
                 classNames="slide"
               >
                 <NavSearch
-                  className={ this.props.focused ? 'focused' : '' }
-                  onFocus={this.props.handleInputFocus}
-                  onBlur={this.props.handleInputBlur}
+                  className={ focused ? 'focused' : '' }
+                  onFocus={handleInputFocus}
+                  onBlur={handleInputBlur}
                 ></NavSearch>
               </CSSTransition>
-              <i className={ this.props.focused ? 'iconfont icon-Magnifier focused' : 'iconfont icon-Magnifier' }></i>
+              <i className={ focused ? 'iconfont icon-Magnifier focused' : 'iconfont icon-Magnifier' }></i>
               {/* 热搜面板 */}
               { this.getSearchTrending() }
             </SearchWrapper>
@@ -89,7 +100,10 @@ const mapStateToProps = (state) => {
   return {
     //  等价于 state.get('header').get('focused')
     focused: state.getIn(['header', 'focused']),
-    search_list: state.getIn(['header', 'search_list'])
+    search_list: state.getIn(['header', 'search_list']),
+    page: state.getIn(['header', 'page']),
+    totalPage: state.getIn(['header', 'totalPage']),
+    mouseIn: state.getIn(['header', 'mouseIn']),
   };
 };
 
@@ -101,6 +115,19 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleInputBlur () {
       dispatch(actionCreators.searchBlur());
+    },
+    handleMouseEnter() {
+      dispatch(actionCreators.mouseEnter());
+    },
+    handleMouseLeave() {
+      dispatch(actionCreators.mouseLeave());
+    },
+    handleChangePage(page, totalPage) {
+      if (page < totalPage) {
+        dispatch(actionCreators.changePage(page + 1));
+      } else {
+        dispatch(actionCreators.changePage(1));
+      }
     }
   };
 };
