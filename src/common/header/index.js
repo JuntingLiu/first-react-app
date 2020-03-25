@@ -42,7 +42,10 @@ class Header extends React.Component {
           >
           <SearchTrendingTitle>
             热门搜索
-            <SearchTrendingSwitch onClick={() => handleChangePage(page, totalPage)}>换一换</SearchTrendingSwitch>
+            <SearchTrendingSwitch onClick={() => handleChangePage(page, totalPage, this.spinIcon)}>
+              <i ref={(spin) => {this.spinIcon = spin}} class="iconfont icon-spin"/>
+              换一换
+            </SearchTrendingSwitch>
           </SearchTrendingTitle>
           <SearchTrendingList>
             { pageList }
@@ -79,7 +82,7 @@ class Header extends React.Component {
                   onBlur={handleInputBlur}
                 ></NavSearch>
               </CSSTransition>
-              <i className={ focused ? 'iconfont icon-Magnifier focused' : 'iconfont icon-Magnifier' }></i>
+              <i className={ focused ? 'iconfont icon-Magnifier focused zoom' : 'iconfont icon-Magnifier zoom' }></i>
               {/* 热搜面板 */}
               { this.getSearchTrending() }
             </SearchWrapper>
@@ -122,7 +125,18 @@ const mapDispatchToProps = (dispatch) => {
     handleMouseLeave() {
       dispatch(actionCreators.mouseLeave());
     },
-    handleChangePage(page, totalPage) {
+    handleChangePage(page, totalPage, spin) {
+      let originAngle = spin.style.transform.replace(/[^\d]/ig, '');
+      console.log("handleChangePage -> originAngle", originAngle)
+
+      if (originAngle) {
+        originAngle = parseInt(originAngle, 10);
+      } else {
+        originAngle = 0;
+      }
+
+      spin.style.transform = `rotate(${originAngle + 360}deg)`;
+
       if (page < totalPage) {
         dispatch(actionCreators.changePage(page + 1));
       } else {

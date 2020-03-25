@@ -67,14 +67,13 @@ export const SearchWrapper = styled.div`
     width: 160px;
   }
 
-  .iconfont {
+  .zoom {
     position: absolute;
     right: 4px;
     bottom: 4px;
     width: 30px;
     line-height: 30px;
     border-radius: 15px;
-    // background: red;
     text-align: center;
     color: #969696;
 
@@ -143,6 +142,14 @@ export const SearchTrendingTitle = styled.div`
 export const SearchTrendingSwitch = styled.span`
   float: right;
   font-size: 13px;
+
+  .icon-spin {
+    display: inline-block; // block 元素动画才会生效
+    font-size: 12px;
+    margin-right: 5px;
+    transition: all 0.2s ease-in;
+    transform-origin: center;
+  }
 `;
 
 export const SearchTrendingList = styled.div`
