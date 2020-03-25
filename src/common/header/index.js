@@ -43,7 +43,7 @@ class Header extends React.Component {
           <SearchTrendingTitle>
             热门搜索
             <SearchTrendingSwitch onClick={() => handleChangePage(page, totalPage, this.spinIcon)}>
-              <i ref={(spin) => {this.spinIcon = spin}} class="iconfont icon-spin"/>
+              <i ref={(spin) => {this.spinIcon = spin}} className="iconfont icon-spin"/>
               换一换
             </SearchTrendingSwitch>
           </SearchTrendingTitle>
@@ -58,7 +58,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { focused, handleInputFocus, handleInputBlur } = this.props;
+    const { focused, handleInputFocus, handleInputBlur, search_list } = this.props;
     return (
       <div>
         <HeaderWrapper>
@@ -78,7 +78,7 @@ class Header extends React.Component {
               >
                 <NavSearch
                   className={ focused ? 'focused' : '' }
-                  onFocus={handleInputFocus}
+                  onFocus={() => handleInputFocus(search_list)}
                   onBlur={handleInputBlur}
                 ></NavSearch>
               </CSSTransition>
@@ -112,8 +112,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleInputFocus () {
-      dispatch(actionCreators.searchList());
+    handleInputFocus (list) {
+      (list.size === 0) && dispatch(actionCreators.searchList());
       dispatch(actionCreators.searchFocus());
     },
     handleInputBlur () {
