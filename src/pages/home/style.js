@@ -68,7 +68,7 @@ export const ListItem = styled.div`
     float: right;
     width: 125px;
     height: 100px;
-    border-radius: 10px;
+    border-radius: 4px;
   }
 `;
 export const ListInfo = styled.div`
@@ -91,4 +91,20 @@ export const ListInfo = styled.div`
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+`;
+
+// Recommend
+export const RecommendWrapper = styled.div`
+  width: 280px;
+  /* margin: 30px 0; */
+`;
+
+export const RecommendItem = styled.div`
+  width: 100%;
+  min-height: 50px;
+  background: url(${(props) => props.imgUrl});
+  background-size: contain;
+  cursor: pointer;
+  margin-bottom: 6px;
+  border-radius: 4px;
 `;

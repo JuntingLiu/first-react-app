@@ -48,6 +48,24 @@ const initialState = fromJS({
       desc: '我写小说刚好一个月了。家里人问我，这一个月都在捣鼓的事情，挣了多少钱了？ 我听了觉得特别不舒服。 因为我一分钱没赚到。 书没签约平台，自然赚不到钱。 可是在家人看来，我天天码字，貌似很辛苦，而且非常没有时间。 但是却没有收益，那不是很讽刺人吗？',
       imgUrl: topic_001
     },
+  ],
+  recommendList: [
+    {
+      id: 1,
+      imgUrl: 'https://www.jianshu.com/assets/web/banner-s-club-aa8bdf19f8cf729a759da42e4a96f366.png'
+    },
+    {
+      id: 2,
+      imgUrl: 'https://www.jianshu.io/assets/web/banner-s-7-1a0222c91694a1f38e610be4bf9669be.png'
+    },
+    {
+      id: 3,
+      imgUrl: 'https://www.jianshu.com/assets/web/banner-s-5-4ba25cf5041931a0ed2062828b4064cb.png'
+    },
+    {
+      id: 4,
+      imgUrl: 'https://www.jianshu.com/assets/web/banner-s-6-c4d6335bfd688f2ca1115b42b04c28a7.png'
+    },
   ]
 });
 
