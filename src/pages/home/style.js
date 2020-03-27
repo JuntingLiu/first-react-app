@@ -108,3 +108,83 @@ export const RecommendItem = styled.div`
   margin-bottom: 6px;
   border-radius: 4px;
 `;
+
+// Writer
+export const WriterWrapper = styled.div`
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding-top: 0;
+  font-size: 13px;
+  text-align: center;
+`;
+
+export const WriterTitle = styled.div`
+  text-align: left;
+  font-size: 14px;
+  color: #969696;
+
+  .change {
+    float: right;
+    display: block;
+
+    .icon-spin {
+      display: inline-block; // block 元素动画才会生效
+      font-size: 12px;
+      margin-right: 5px;
+      transition: all 0.2s ease-in;
+      transform-origin: center;
+    }
+  }
+`;
+
+export const WriterList = styled.div`
+  margin: 0 0 20px;
+  text-align: left;
+`;
+
+export const WriterItem = styled.div`
+  margin-top: 15px;
+  line-height: 20px;
+  overflow: hidden;
+
+  .avatar {
+    float: left;
+    width: 48px;
+    height: 48px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+  }
+
+  .follow {
+    float: right;
+    margin-top: 5px;
+    color: #42c02e;
+    line-height: 15px;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    overflow: hidden;
+
+    .icon-plus {
+      display: block;
+      float: left;
+    }
+  }
+
+  .name {
+    display: block;
+    padding-top: 5px;
+    margin-right: 60px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  p {
+    margin-top: 2px;
+    font-size: 12px;
+    color: #969696;
+    margin: 0 0 10px;
+  }
+
+`;

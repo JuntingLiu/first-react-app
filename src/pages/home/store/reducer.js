@@ -66,6 +66,44 @@ const initialState = fromJS({
       id: 4,
       imgUrl: 'https://www.jianshu.com/assets/web/banner-s-6-c4d6335bfd688f2ca1115b42b04c28a7.png'
     },
+  ],
+  writerList: [
+    {
+      id: 1,
+      name: '卢璐说',
+      avatar: topic_001,
+      desc: '写了1477.9k字 · 30.7k喜欢'
+    },
+    {
+      id: 2,
+      name: '老子',
+      avatar: topic_002,
+      desc: '写了1477.9k字 · 30.7k喜欢'
+    },
+    {
+      id: 3,
+      name: '小刚',
+      avatar: topic_003,
+      desc: '写了1477.9k字 · 30.7k喜欢'
+    },
+    {
+      id: 4,
+      name: '嘎吱',
+      avatar: topic_001,
+      desc: '写了1477.9k字 · 30.7k喜欢'
+    },
+    {
+      id: 5,
+      name: '天天',
+      avatar: topic_002,
+      desc: '写了1477.9k字 · 30.7k喜欢'
+    },
+    {
+      id: 6,
+      name: '倾诉',
+      avatar: topic_003,
+      desc: '写了1477.9k字 · 30.7k喜欢'
+    },
   ]
 });
 
