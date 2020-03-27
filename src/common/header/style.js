@@ -116,6 +116,7 @@ export const SearchTrending = styled.div`
   padding: 20px;
   border-radius: 4px;
   box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+  background: #FFF;
 
   &::before {
     content: "";

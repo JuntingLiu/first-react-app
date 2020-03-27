@@ -28,9 +28,11 @@ export const HomeRight = styled.div`
 // Topic
 export const TopicWrapper = styled.div`
   padding: 20px 0 10px 0;
-  overflow: hidden;
   /* 充分利用 TopicWrapper 容器的宽度 */
   margin-left: -18px;
+  border-bottom: 1px solid #dcdcdc;
+  overflow: hidden;
+  box-sizing: border-box;
 `;
 export const TopicItem = styled.div`
   box-sizing: border-box;
@@ -52,5 +54,41 @@ export const TopicItem = styled.div`
     width: 32px;
     height: 32px;
     margin-right: 10px;
+  }
+`;
+
+// List
+export const ListItem = styled.div`
+  overflow: hidden;
+  padding: 20px 0;
+  border-bottom: 1px solid #dcdcdc;
+
+  .pic {
+    display: block;
+    float: right;
+    width: 125px;
+    height: 100px;
+    border-radius: 10px;
+  }
+`;
+export const ListInfo = styled.div`
+  float: left;
+  width: 500px;
+
+  .title {
+    line-height: 27px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+  }
+
+  .desc {
+    line-height: 24px;
+    font-size: 13px;
+    color: #999;
+    display: -webKit-box;
+    -webKit-line-clamp: 2; // 控制几行显示省略号
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 `;
