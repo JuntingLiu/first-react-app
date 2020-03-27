@@ -6,7 +6,6 @@ import {
   WriterList,
   WriterItem
 } from '../style'
-import topic_003 from '../../../statics/images/topic_003.jpg';
 
 class Writer extends React.Component {
   render() {
