@@ -1,8 +1,8 @@
 import React from 'react';
-import Topic from './components/topic';
-import List from './components/list';
-import Recommend from './components/recommend';
-import Writer from './components/writer';
+import Topic from './components/Topic';
+import List from './components/List';
+import Recommend from './components/Recommend';
+import Writer from './components/Writer';
 import {
   HomeWrapper,
   HomeLeft,
