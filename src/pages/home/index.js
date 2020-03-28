@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Topic from './components/Topic';
 import List from './components/List';
 import Recommend from './components/Recommend';
@@ -9,6 +10,7 @@ import {
   HomeRight
 } from  './style';
 import BannerUrl from '../../statics/images/banner_1.jpg';
+import { actionCreators } from './store'
 
 class Home extends React.Component {
   render () {
@@ -28,6 +30,17 @@ class Home extends React.Component {
       </div>
     )
   }
+
+  componentDidMount() {
+    this.props.fetchHomeData();
+  }
 }
 
-export default Home;
+const mapDispatchToProps = (dispatch) => ({
+  fetchHomeData() {
+    const action = actionCreators.fetchHomeData();
+    dispatch(action);
+  }
+});
+
+export default connect(null, mapDispatchToProps)(Home);
