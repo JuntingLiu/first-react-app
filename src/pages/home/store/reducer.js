@@ -12,6 +12,7 @@ const initialState = fromJS({
   recommendList: [],
   writerList: [],
   articlePage: 1,
+  showScrollTop: false
 });
 
 const imgArr = [topic_001, topic_002, topic_003];
@@ -48,6 +49,8 @@ export default (state = initialState, action) => {
         articleList: state.get('articleList').concat(fromJS(newArticleList)),
         articlePage: fromJS(action.nextPage)
       })
+    case constants.TOGGLE_SCROLL_TOP:
+      return state.set('showScrollTop', fromJS(action.show))
     default:
       return state
   }

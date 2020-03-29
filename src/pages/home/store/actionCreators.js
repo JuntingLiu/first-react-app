@@ -43,3 +43,9 @@ export const loadMoreHomeList = (page) => {
     })
   }
 };
+
+// 返回顶部 显示与隐藏
+export const toggleTopShow = (show) => ({
+  type: constants.TOGGLE_SCROLL_TOP,
+  show
+});

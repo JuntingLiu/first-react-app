@@ -7,7 +7,8 @@ import Writer from './components/Writer';
 import {
   HomeWrapper,
   HomeLeft,
-  HomeRight
+  HomeRight,
+  BackTop
 } from  './style';
 import BannerUrl from '../../statics/images/banner_1.jpg';
 import { actionCreators } from './store'
@@ -26,6 +27,9 @@ class Home extends React.Component {
             <Recommend/>
             <Writer/>
           </HomeRight>
+          {
+            this.props.showScrollTop && <BackTop onClick={this.handleScrollTop}>顶部</BackTop>
+          }
         </HomeWrapper>
       </div>
     )
@@ -33,14 +37,35 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.props.fetchHomeData();
+    this.bindEvents();
+  }
+
+  handleScrollTop() {
+    window.scroll(0, 0);
+  }
+
+  // 监听 scroll
+  bindEvents() {
+    window.addEventListener('scroll', this.props.changeScrollTopShow)
   }
 }
+
+const mapStateToProps = (state) => ({
+  showScrollTop: state.getIn(['home', 'showScrollTop'])
+});
 
 const mapDispatchToProps = (dispatch) => ({
   fetchHomeData() {
     const action = actionCreators.fetchHomeData();
     dispatch(action);
+  },
+  changeScrollTopShow() {
+    if (document.documentElement.scrollTop > 200) {
+      dispatch(actionCreators.toggleTopShow(true))
+    } else {
+      dispatch(actionCreators.toggleTopShow(false))
+    }
   }
 });
 
-export default connect(null, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
