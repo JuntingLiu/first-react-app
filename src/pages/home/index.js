@@ -40,12 +40,17 @@ class Home extends React.Component {
     this.bindEvents();
   }
 
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.props.changeScrollTopShow);
+	}
+
   handleScrollTop() {
     window.scroll(0, 0);
   }
 
   // 监听 scroll
   bindEvents() {
+    console.log('[addEventListener]: scroll');
     window.addEventListener('scroll', this.props.changeScrollTopShow)
   }
 }
