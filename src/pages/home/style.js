@@ -61,7 +61,7 @@ export const TopicItem = styled.div`
 export const ListItem = styled.div`
   overflow: hidden;
   padding: 20px 0;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid #f0f0f0;
 
   .pic {
     display: block;
@@ -186,5 +186,18 @@ export const WriterItem = styled.div`
     color: #969696;
     margin: 0 0 10px;
   }
+`;
 
+// Load more
+export const LoadMore = styled.div`
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  margin: 30px auto 60px;
+  background-color: #a5a5a5;
+  border-radius: 20px;
+  text-align: center;
+  color: #FFF;
+  font-size: 15px;
+  cursor: pointer;
 `;

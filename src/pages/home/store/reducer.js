@@ -10,13 +10,15 @@ const initialState = fromJS({
   topicList: [],
   articleList: [],
   recommendList: [],
-  writerList: []
+  writerList: [],
+  articlePage: 1,
 });
+
+const imgArr = [topic_001, topic_002, topic_003];
 
 export default (state = initialState, action) => {
   switch(action.type) {
     case constants.CHANGE_HOME_DATA:
-      const imgArr = [topic_001, topic_002, topic_003];
       const handleArr = ['topicList', 'articleList', 'writerList'];
 
       // 处理图片数据
@@ -36,6 +38,15 @@ export default (state = initialState, action) => {
         articleList: fromJS(action.articleList),
         recommendList: fromJS(action.recommendList),
         writerList: fromJS(action.writerList)
+      })
+    case constants.ADD_ARTICLE_LIST:
+      const newArticleList = action.articleList.map(item => {
+        item.imgUrl = imgArr[Math.floor(Math.random() * 3)];
+        return item;
+      });
+      return state.merge({
+        articleList: state.get('articleList').concat(fromJS(newArticleList)),
+        articlePage: fromJS(action.nextPage)
       })
     default:
       return state
