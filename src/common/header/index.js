@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import {
   HeaderWrapper,
@@ -62,7 +63,9 @@ class Header extends PureComponent {
     return (
       <div>
         <HeaderWrapper>
-          <Logo/>
+          <Link to="/">
+            <Logo/>
+          </Link>
           <Nav>
             <NavItem className="left active">首页</NavItem>
             <NavItem className="left">下载 APP</NavItem>

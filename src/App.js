@@ -10,8 +10,8 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Header />
         <Router>
+          <Header />
           <Route path="/" exact component={Home} />
           {/* 访问 /detail 的时候 “/” 也会被匹配上， 使用 exact 属性精准匹配 */}
           <Route path="/detail" exact component={Detail}/>
