@@ -7,7 +7,7 @@ import {
   WriterItem
 } from '../style'
 
-class Writer extends React.Component {
+class Writer extends React.PureComponent {
   render() {
     const { list } = this.props;
 

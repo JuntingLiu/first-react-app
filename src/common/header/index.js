@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import {
@@ -18,7 +18,7 @@ import {
 } from './style';
 import { actionCreators } from './store';
 
-class Header extends React.Component {
+class Header extends PureComponent {
 
   getSearchTrending () {
     const { focused, mouseIn, search_list, page, totalPage, handleMouseEnter, handleMouseLeave, handleChangePage } = this.props;

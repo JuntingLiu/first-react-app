@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Topic from './components/Topic';
 import List from './components/List';
@@ -13,7 +13,7 @@ import {
 import BannerUrl from '../../statics/images/banner_1.jpg';
 import { actionCreators } from './store'
 
-class Home extends React.Component {
+class Home extends PureComponent {
   render () {
     return (
       <div>

@@ -7,7 +7,7 @@ import {
   LoadMore
 } from '../style';
 
-class List extends React.Component {
+class List extends React.PureComponent {
   render() {
     const { list, handleLoadMore, page } = this.props;
 
