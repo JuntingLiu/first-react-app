@@ -20,38 +20,46 @@ const imgArr = [topic_001, topic_002, topic_003];
 export default (state = initialState, action) => {
   switch(action.type) {
     case constants.CHANGE_HOME_DATA:
-      const handleArr = ['topicList', 'articleList', 'writerList'];
-
-      // 处理图片数据
-      handleArr.forEach(key => {
-        action[key] && action[key].forEach(item => {
-          if (key === 'writerList') {
-            item.avatar = imgArr[Math.floor(Math.random() * 3)];
-          } else {
-            item.imgUrl = imgArr[Math.floor(Math.random() * 3)];
-          }
-        });
-      });
-
-      // immutable 中 state 有一个 merge api
-      return state.merge({
-        topicList: fromJS(action.topicList),
-        articleList: fromJS(action.articleList),
-        recommendList: fromJS(action.recommendList),
-        writerList: fromJS(action.writerList)
-      })
+      return changeHomeData(state, action);
     case constants.ADD_ARTICLE_LIST:
-      const newArticleList = action.articleList.map(item => {
-        item.imgUrl = imgArr[Math.floor(Math.random() * 3)];
-        return item;
-      });
-      return state.merge({
-        articleList: state.get('articleList').concat(fromJS(newArticleList)),
-        articlePage: fromJS(action.nextPage)
-      })
+      return addArticleList(state, action);
     case constants.TOGGLE_SCROLL_TOP:
       return state.set('showScrollTop', fromJS(action.show))
     default:
       return state
   }
+};
+
+const changeHomeData = (state, action) => {
+  const handleArr = ['topicList', 'articleList', 'writerList'];
+
+  // 处理图片数据
+  handleArr.forEach(key => {
+    action[key] && action[key].forEach(item => {
+      if (key === 'writerList') {
+        item.avatar = imgArr[Math.floor(Math.random() * 3)];
+      } else {
+        item.imgUrl = imgArr[Math.floor(Math.random() * 3)];
+      }
+    });
+  });
+
+  // immutable 中 state 有一个 merge api
+  return state.merge({
+    topicList: fromJS(action.topicList),
+    articleList: fromJS(action.articleList),
+    recommendList: fromJS(action.recommendList),
+    writerList: fromJS(action.writerList)
+  })
+};
+
+const addArticleList = (state, action) => {
+  const newArticleList = action.articleList.map(item => {
+    item.imgUrl = imgArr[Math.floor(Math.random() * 3)];
+    return item;
+  });
+  return state.merge({
+    articleList: state.get('articleList').concat(fromJS(newArticleList)),
+    articlePage: fromJS(action.nextPage)
+  })
 };
