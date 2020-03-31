@@ -19,7 +19,12 @@ class Detail extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getDetail()
+    // 获取路由参数
+    // 方式1: /detail/2 推荐
+    const { params: { id } } = this.props.match;
+    // 方式2: /detail?id=2
+    // const { location: { search }} = this.props;
+    this.props.getDetail(id)
   }
 }
 
@@ -29,11 +34,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getDetail() {
-    dispatch(actionCreators.getDetail())
+  getDetail(id) {
+    dispatch(actionCreators.getDetail(id))
   }
 });
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);

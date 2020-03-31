@@ -14,7 +14,11 @@ class App extends React.Component {
           <Header />
           <Route path="/" exact component={Home} />
           {/* 访问 /detail 的时候 “/” 也会被匹配上， 使用 exact 属性精准匹配 */}
-          <Route path="/detail" exact component={Detail}/>
+          {/* /detail/:id 只精准匹配 /detail/1 这种 */}
+          <Route path="/detail/:id" exact component={Detail}/>
+
+          {/* /detail 能匹配到 /detail?id=1 */}
+          {/* <Route path="/detail" exact component={Detail}/> */}
         </Router>
       </Provider>
     );
