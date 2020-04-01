@@ -18,6 +18,7 @@ import {
   SearchTrendingItem
 } from './style';
 import { actionCreators } from './store';
+import { actionCreators as loginActionCreators } from '../../pages/login/store'
 
 class Header extends PureComponent {
 
@@ -59,7 +60,7 @@ class Header extends PureComponent {
   }
 
   render() {
-    const { focused, handleInputFocus, handleInputBlur, search_list } = this.props;
+    const { isLogin, focused, handleInputFocus, handleInputBlur, search_list, logout } = this.props;
     return (
       <div>
         <HeaderWrapper>
@@ -69,7 +70,9 @@ class Header extends PureComponent {
           <Nav>
             <NavItem className="left active">首页</NavItem>
             <NavItem className="left">下载 APP</NavItem>
-            <NavItem className="right">登录</NavItem>
+            {
+              isLogin ? <NavItem className="right" onClick={logout}>退出</NavItem> : <Link to="/login"><NavItem className="right">登录</NavItem></Link>
+            }
             <NavItem className="right">
               <i className="iconfont icon-Aa"></i>
             </NavItem>
@@ -110,6 +113,7 @@ const mapStateToProps = (state) => {
     page: state.getIn(['header', 'page']),
     totalPage: state.getIn(['header', 'totalPage']),
     mouseIn: state.getIn(['header', 'mouseIn']),
+    isLogin: state.getIn(['login', 'login']),
   };
 };
 
@@ -145,6 +149,9 @@ const mapDispatchToProps = (dispatch) => {
       } else {
         dispatch(actionCreators.changePage(1));
       }
+    },
+    logout() {
+      dispatch(loginActionCreators.logout())
     }
   };
 };
