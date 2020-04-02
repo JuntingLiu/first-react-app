@@ -1,0 +1,30 @@
+{
+  "src/pages/postList/components/List.js": {
+    "description": "List 组件\n@param {Array} collection 集合\n@param {String} titleKey 标题的 key\n@param {String} textKey 内容的 key",
+    "displayName": "List",
+    "methods": [],
+    "props": {
+      "collection": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "集合"
+      },
+      "titleKey": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "textKey": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      }
+    }
+  }
+}

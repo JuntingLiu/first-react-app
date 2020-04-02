@@ -7,6 +7,7 @@ import {
   ListInfo,
   LoadMore
 } from '../style';
+import PropTypes from "prop-types";
 
 class List extends React.PureComponent {
   render() {
@@ -43,5 +44,13 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(actionCreators.loadMoreHomeList(page));
   }
 });
+
+List.propTypes = {
+  test: PropTypes.string.isRequired
+}
+
+List.defaultProps = {
+  test: 'test'
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);
