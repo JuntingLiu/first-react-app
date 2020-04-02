@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
+// 使用 react-loadable 异步组件后，<Router></Router> 上就不是 Detail 组件了，路由信息就接收不到了，这里就需要通过 withRouter 来解决这个问题。
+import { withRouter } from 'react-router-dom';
 import {
   DetailWrapper,
   Header,
@@ -39,4 +42,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Detail);
+// 处理 loadable 组件后，route 问题
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Detail));
