@@ -20,7 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docgen": "node ./node_modules/.bin/react-docgen ./src/pages/postList/components/ -o ./src/pages/postList/components/readme.json"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,5 +37,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-docgen": "^5.3.0"
   }
 }

@@ -7,6 +7,7 @@ import Home from './pages/home';
 import Detail from './pages/detail';
 import Login from './pages/login';
 import Write from './pages/write';
+import PostList from './pages/postList';
 
 class App extends React.Component {
   render() {
@@ -22,6 +23,9 @@ class App extends React.Component {
           {/* <Route path="/detail" exact component={Detail}/> */}
           <Route path="/login" exact component={Login}/>
           <Route path="/write" exact component={Write}/>
+
+          {/* 测试通用组件编写 */}
+          <Route path="/postList" exact component={PostList}/>
         </Router>
       </Provider>
     );
