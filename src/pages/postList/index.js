@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import List from './components/List';
+import Button from './components/Button'
 
 class PostList extends Component {
   constructor(props) {
@@ -7,18 +8,22 @@ class PostList extends Component {
     this.state = {
       posts: [
         {
+          id: 1,
           name: 'Junting',
           desc: 'A handsome coder.'
         },
         {
+          id: 2,
           name: 'Jerry',
           desc: 'A handsome coder.'
         },
         {
+          id: 3,
           name: 'Bob',
           desc: 'A handsome coder.'
         },
         {
+          id: 4,
           name: 'Helen',
           desc: 'A handsome coder.'
         },
@@ -34,6 +39,10 @@ class PostList extends Component {
           titleKey='name'
           textKey='desc'
           />
+        <Button>
+          {/* <p>😂😄😁</p> */}
+          <span>CLick me</span>
+        </Button>
       </div>
     );
   }
